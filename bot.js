@@ -157,7 +157,14 @@ function dmCommand(arguments, message) {
 function countCommand(arguments, message) {
     let word = arguments[0];
     let history = getMessages(this.channel, arguments[1]);
-    message.channel.send(history.match(/word/g)).length);
+    let messageStringArray = history.map(messageToString);
+    let count = history.match(/word/g)).length;
+    console.log(count);
+    message.channel.send(count);
+}
+
+function messageToString(message) {
+    return message.toString()
 }
 
 async function getMessages(channel: TextChannel, limit: number = 100): Promise<Message[]> {
